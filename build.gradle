@@ -1,12 +1,11 @@
 buildscript {
     ext {
         minSdkVersion = 9
-        targetSdkVersion = 28
-        compileSdkVersion = 28
-        buildToolsVersion = '28.0.3'
+        targetSdkVersion = 30
+        compileSdkVersion = 30
         javaVersion = JavaVersion.VERSION_1_7
         java8Version = JavaVersion.VERSION_1_8
-        butterknifeVersion = '10.1.0'
+        butterknifeVersion = '10.2.3'
     }
 
     repositories {
@@ -16,7 +15,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:4.1.2'
         classpath "com.jakewharton:butterknife-gradle-plugin:${butterknifeVersion}"
     }
 }

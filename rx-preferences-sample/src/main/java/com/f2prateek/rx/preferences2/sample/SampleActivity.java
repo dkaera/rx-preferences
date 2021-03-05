@@ -3,6 +3,8 @@ package com.f2prateek.rx.preferences2.sample;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import androidx.preference.PreferenceManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
@@ -18,14 +20,13 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
-
 public class SampleActivity extends Activity {
 
   @BindView(R.id.foo_1) CheckBox foo1Checkbox;
   @BindView(R.id.foo_2) CheckBox foo2Checkbox;
   @BindView(R.id.text_1) EditText foo1EditText;
   @BindView(R.id.text_2) EditText foo2EditText;
+  @BindView(R.id.btn_clear) Button btnClear;
   Preference<Boolean> fooBoolPreference;
   Preference<String> fooTextPreference;
   CompositeDisposable disposables;
@@ -38,12 +39,13 @@ public class SampleActivity extends Activity {
     ButterKnife.bind(this);
 
     // Preferences
-    SharedPreferences preferences = getDefaultSharedPreferences(this);
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
     RxSharedPreferences rxPreferences = RxSharedPreferences.create(preferences);
 
     // foo
     fooBoolPreference = rxPreferences.getBoolean("fooBool");
     fooTextPreference = rxPreferences.getString("fooText");
+    btnClear.setOnClickListener(v -> rxPreferences.clear());
   }
 
   @Override protected void onResume() {
